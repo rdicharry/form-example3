@@ -1,10 +1,14 @@
 <?php
+
 echo "Enter a plant name:";
 $commonName = "";
 $botanicalName = "";
-if(isset($_POST['common-name'])) $commonName = $_POST['common-name'];
-if(isset($_POST['botanical-name'])) $botanicalName = $_POST['botanical-name'];
+if(isset($_POST['common-name']) && isset($_POST['botanical-name'])) {
+	$botanicalName = $_POST['botanical-name'];
+	$commonName = $_POST['common-name'];
+	$query = "INSERT INTO plants VALUES ($commonName, $botanicalName)";
 
+}
 echo <<<_END
 <html>
 <head>
@@ -18,7 +22,7 @@ Common Name
 Botanical (Latin) Name
 <input type="text" name="botanical-name">
 <br>
-<input type="submit" >
+<input type="submit" value="Add Record">
 </form>
 _END;
 
@@ -29,10 +33,12 @@ if(strlen($commonName) > 0 || strlen($botanicalName) > 0) {
 </div >
 _END;
 }
-	echo <<<_END
+echo <<<_END
 </body>
 </html>
 
 _END;
+
+
 
 ?>
